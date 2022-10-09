@@ -7,6 +7,9 @@ const commands = [
 	new SlashCommandBuilder().setName('ping').setDescription('Replies with pong!'),
 	new SlashCommandBuilder().setName('server').setDescription('Replies with server info!'),
 	new SlashCommandBuilder().setName('user').setDescription('Replies with user info!'),
+	new SlashCommandBuilder().setName('support').setDescription('sends link to support server'),
+	new SlashCommandBuilder().setName('website').setDescription('Sends website link'),
+	new SlashCommandBuilder().setName('about').setDescription('tells what WackyBlocks it about'),
 ]
 	.map(command => command.toJSON());
 
@@ -33,6 +36,12 @@ rest.put(Routes.applicationGuildCommands(process.env.cid,process.env.gid), { bod
             await interaction.reply(`Server name: ${interaction.guild.name}\nTotal members: ${interaction.guild.memberCount}`);
         } else if (commandName === 'user') {
             await interaction.reply(`Your tag: ${interaction.user.tag}\nYour id: ${interaction.user.id}`);
+	} else if commandName === 'support') {
+	    await interaction.reply(`For support including WackyBlocks website or the discord bot, please join https://discord.gg/xKUAhwcd`);
+	} else if commandName === 'website') {
+	    await interaction.reply(`https://wackyblocks.com`);
+	} else if commandName === 'about') {
+	    await interaction.reply('WackyBlocks is a team of developers that create applications and websites for other people with clean interfaces, to buy your own application or website or contact us please visit https://wackyblocks.com`);
         }
     });
 // When the client is ready, run this code (only once)
